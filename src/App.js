@@ -1,26 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import LifeCycle from './LifeCycle';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    display: true,
+  };
+
+  effacerOuAfficher = () => {
+    this.setState({
+      display: !this.state.display,
+    });
+  };
+
+  render() {
+    const showComponent = this.state.display ? (
+      <LifeCycle name="Toto2" />
+    ) : (
+      <div></div>
+    );
+    return (
+      <div className="App">
+        {showComponent}
+        <button onClick={this.effacerOuAfficher}>Cliquer ici !</button>
+      </div>
+    );
+  }
 }
 
 export default App;
